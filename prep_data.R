@@ -1,6 +1,5 @@
 # TWO STEPS ERROR CORRECTION MECHANIZM 
 
-
 library(dplyr)
 library(mice)
 library(lubridate)
@@ -30,8 +29,6 @@ md.pattern(dane_)
 aggr_plot <- aggr(dane_, col=c('navyblue','red'), numbers=TRUE, sortVars=TRUE, labels=names(data), cex.axis=.7, gap=3, ylab=c("Histogram of missing data","Pattern"))
 marginplot(dane_[c(2,3)])
 
-# mozliwe opcje do redukcji brakow danych
-
 # Method           Description Scale type Default
 # pmm              Predictive mean matching numeric Y
 # norm             Bayesian linear regression numeric
@@ -51,7 +48,7 @@ completedData1 <- complete(tempData,1)
 # https://www.jstatsoft.org/article/view/v045i03/v45i03.pdf
 
 
-# SIMPLE OUTLIERS TREATMENT, zrobilem proste podejscie wszytko co  wyzsze od srednia+moment_odch stan zamienaim na mediane
+# SIMPLE OUTLIERS TREATMENT 
 completedData2 = data.frame(sapply(completedData1[,-c(1)],function(j){ifelse( abs(j-mean(j))>sd(j)*2.9, median(j), j)}))
 
 #as.POSIXct(harMet_15Min$datetime[1],format="%d-%m-%Y%H:%M")
