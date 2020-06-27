@@ -52,7 +52,7 @@ completedData1 <- complete(tempData,1)
 
 
 # SIMPLE OUTLIERS TREATMENT, zrobilem proste podejscie wszytko co  wyzsze od srednia+moment_odch stan zamienaim na mediane
-completedData2 = data.frame(sapply(completedData1[,-c(1)],function(j){ifelse( j>mean(j)+sd(j)*2.9, median(j), j)}))
+completedData2 = data.frame(sapply(completedData1[,-c(1)],function(j){ifelse( abs(j-mean(j))>sd(j)*2.9, median(j), j)}))
 
 #as.POSIXct(harMet_15Min$datetime[1],format="%d-%m-%Y%H:%M")
 completedData3 = completedData2 %>% 
